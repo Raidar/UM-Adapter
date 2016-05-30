@@ -239,7 +239,18 @@ local function MakeAutoInstall (Plugin, AddUserFile)
         if try then
           local relName = item.FileName:sub(offset)
           local Name = relName:match("[^\\/]+$")
-          if Name:match(filepattern) then AddUserFile(relName) end
+          --if Name:match(filepattern) then AddUserFile(relName) end
+          -- [[
+          if Name:match(filepattern) then
+            AddUserFile(relName)
+          else
+            local fileexample = filepattern
+            if fileexample:sub(-1) == "$" then
+              fileexample = fileexample:sub(1, -2).."%.example$"
+              if Name:match(fileexample) then AddUserFile(relName) end
+            end
+          end
+          --]]
         end
       end
     end
@@ -279,7 +290,7 @@ local function LoadUserMenu (Plugin, aFileName)
   ------------------------------------------------------------------------------
   env.AddUserFile = function (filename)
     uDepth = uDepth + 1
-    filename = ModuleDir .. filename
+    local filename = ModuleDir .. filename
     if uDepth == 1 then
       -- if top-level _usermenu.lua doesn't exist, it isn't error
       local attr = win.GetFileAttr(filename)
@@ -289,6 +300,15 @@ local function LoadUserMenu (Plugin, aFileName)
         attr = win.GetFileAttr(filename)
         if not attr or attr:find("d") then return end
       end
+    -- [[
+    else
+      local attr = win.GetFileAttr(filename)
+      if not attr or attr:find("d") then
+        filename = filename..".example"
+        attr = win.GetFileAttr(filename)
+        if not attr or attr:find("d") then return end
+      end
+    --]]
     end
     local chunk = assert(loadfile(filename))
     uStack[uDepth] = setmetatable({}, uMeta)

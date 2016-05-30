@@ -463,7 +463,7 @@ function unit.Execute (Env) --> (table)
 
   --local logShow = context.ShowInfo
   --logShow({ unit.PackagePath:gsub(";", "\n") }, "PackagePath", "w d2")
-  --logShow(unit, "lf_plugin", "w d3")
+  --logShow(unit, "um_adapter", "w d3")
 
   unit.FirstRun = false
 

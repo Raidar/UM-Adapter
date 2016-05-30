@@ -48,8 +48,8 @@ if UseAutoAdding then
   --[[ Auto loading ]]--
   --AutoInstall("", "%_.+menu%.lua", 1) -- Загрузка всех _*menu.lua
   --logShow({}, "UseAutoAdding = true")
-  AutoInstall("scripts/", "%_.+menu%.lua$", 1) -- Загрузка всех _*menu.lua
-  --AutoInstall("scripts/", "%_usermenu%.lua$", 1) -- Загрузка всех _usermenu.lua
+  --AutoInstall("scripts/", "%_.+menu%.lua$", 1) -- Загрузка всех _*menu.lua
+  AutoInstall("scripts/", "%_usermenu%.lua$", 1) -- Загрузка всех _usermenu.lua
 else
   --[[ Manual loading ]]--
   --AddToMenu("c", "&Rh_Scripts package", nil, "scripts/Rh_Scripts/Common/rhsConfig")
