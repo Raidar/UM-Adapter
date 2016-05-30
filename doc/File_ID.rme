@@ -1,0 +1,29 @@
+UM Adapter pack
+
+[Info]
+Ver. : 3.0.0.2
+Date : 2016-05-30
+Ware : Freeware
+Lic. : MIT
+Reqs : FAR + LuaFAR v.3.0.4575
+Type : Plugin for FAR Manager (Script package)
+Desc : UM Adapter package for FAR LuaMacro
+
+Auth : A.I. Rakhmatullin
+       / А.И. Рахматуллин
+Addr : RF, RT, Kazan
+       / РФ, РТ, Казань
+Copy : 2016+
+
+Home : http://raidar.github.com/index.htm
+
+[Anons]
+  UM Adapter is a package of scripts for using script packages
+writed for 'LuaFAR for Editor' plugin within LuaMacro plugin.
+  UM Adapter — пакет для использования пакетов скриптов,
+написанных для 'LuaFAR for Editor', в плагине LuaMacro.
+
+  UM Adapter is based on source code of 'LuaFAR for Editor' by Shmuel Zeigerman.
+  UM Adapter основан на исходном коде 'LuaFAR for Editor' Сэмуэла Зейгермана.
+
+―――――――

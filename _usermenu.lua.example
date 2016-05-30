@@ -1,0 +1,81 @@
+--[[ Menu Extending ]]--
+
+----------------------------------------
+--[[ Common Settings ]]--
+
+--local logShow = context.ShowInfo
+--rhlog.TblMsg(_G, "_G", 0, "f")
+--rhlog.TblMsg(getfenv(), "getfenv", 1)
+
+local UseAutoAdding = true
+--local UseAutoAdding = false
+
+----------------------------------------
+--[[ Extend package.path ]]--
+
+--[[
+local function ExpandEnv (s)
+  return s:gsub("%%(.-)%%", win.GetEnv)
+end
+
+local PackPath = package.path
+local LuaFAR_Path = ExpandEnv(win.GetEnv("LUAFAR_PATH") or "")
+if string.len(LuaFAR_Path) > 0 then
+  if LuaFAR_Path:sub(-1, 1) ~= ";" then
+    LuaFAR_Path = LuaFAR_Path..";"
+  end
+  --far.Show(LuaFAR_Path)
+  if not PackPath:find(LuaFAR_Path, 1, true) then
+    PackPath = LuaFAR_Path..PackPath
+  end
+end
+package.path = PackPath
+--]]
+
+----------------------------------------
+--[[ Add User Files ]]--
+
+-- Add LuaFAR context features first only!!!
+require "context.initiate"       -- LFc initiate
+MakeResident("context.resident") -- LFc resident
+
+--MakeResident("Test_Redraw")
+
+--return -- TEST LuaFAR context only
+
+-- [==[
+if UseAutoAdding then
+  --[[ Auto loading ]]--
+  --AutoInstall("", "%_.+menu%.lua", 1) -- Загрузка всех _*menu.lua
+  --logShow({}, "UseAutoAdding = true")
+  AutoInstall("scripts/", "%_.+menu%.lua$", 1) -- Загрузка всех _*menu.lua
+  --AutoInstall("scripts/", "%_usermenu%.lua$", 1) -- Загрузка всех _usermenu.lua
+else
+  --[[ Manual loading ]]--
+  --AddToMenu("c", "&Rh_Scripts package", nil, "scripts/Rh_Scripts/Common/rhsConfig")
+
+  AddUserFile('scripts/lfa_config/_usermenu.lua') -- LFA config menu
+
+  AddUserFile("scripts/Rh_Scripts/_usermenu.lua") -- Rh_Scripts menu
+  --AddUserFile("scripts/Rh_Scripts/_ucfgmenu.lua") -- Rh_Scripts config menu
+
+  AddUserFile("scripts/Rh_Scripts/_selfmenu.lua") -- Self-created menu
+  AddUserFile("scripts/TestScripts/_usermenu.lua") -- Test scripts menu
+
+  --AddUserFile('scripts/fl_scripts/_usermenu.lua') -- farlua scripts menu
+end
+--]==]
+
+-- Add command to call from the command line, e.g.:
+-- lfe:ren
+--AddCommand("ren", "examples/lf_rename")
+
+----------------------------------------
+--[[ Some menu items ]]--
+
+----------------------------------------
+--[[ Command prefixes ]]--
+
+--local rhlog = require "scripts/Rh_Scripts/Utils/Logging"
+--rhlog.TblMsg(_G, "_G", 0, "tf")
+--------------------------------------------------------------------------------

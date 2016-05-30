@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+local pcall, require = pcall, require
+
+local function prequire (...)
+  return pcall(require, ...)
+end --
+
+---------------------------------------- um_adapter
+local isOk, Result = prequire "um_adapter"
+if not isOk then 
+  far.Show(Result)
+  return
+end
+
+local _H = getfenv()
+local um_adapter = Result.Execute(_H)
+
+local mG = _G
+local uG = um_adapter.global
+for k, v in pairs(uG) do mG[k] = v end
+
+do
+  local acall = mf.acall
+  local aItem = { from = "macro" }
+
+function mG.UMAdapterMenu ()
+  return acall(um_adapter.Run, um_adapter, Area.Current, aItem)
+end ---- UMAdapterMenu
+
+end
+--------------------------------------------------------------------------------
