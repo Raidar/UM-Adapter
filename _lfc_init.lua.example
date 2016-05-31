@@ -1,7 +1,0 @@
----------------------------------------- LuaFAR context
-require "context.initiate"
-resident = require "context.resident"
-
-local MakeLFcResident = require "context.luamacro"
-MakeLFcResident(resident, Event)
-----------------------------------------

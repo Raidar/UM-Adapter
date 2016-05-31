@@ -389,25 +389,6 @@ function unit:RegisterUserMenu (Priority)
 
 end ---- RegisterUserMenu
 
----------------------------------------- LuaFAR context
---[[
-function unit:InitContext ()
-
-  --far.Show"initiating .."
-  require "context.initiate"
-  --far.Show"initiating OK"
-
-  resident = require "context.resident"
-  --if resident then far.Show"resident OK" end
-  local MakeLFcResident = require "context.luamacro"
-  --if MakeLFcResident then far.Show"MakeResident OK" end
-  MakeLFcResident(resident, self.Env.Event)
-
-  self.global.context = context
-  self.global.ctxdata = ctxdata
-
-end ---- InitContext
---]]
 ---------------------------------------- main
 do
   local GetSysEnv = win.GetEnv
@@ -425,23 +406,18 @@ function unit.Execute (Env) --> (table)
 
   unit.FirstRun = true
 
-  far2Utils   = require "far2.utils"
-  --far2History = require "far2.history"
-
   local ProfilePath = GetSysEnv("FARPROFILE")
   if not ProfilePath then
     ProfilePath = GetSysEnv("FARHOME").."\\Profile"
   end
   unit.ProfilePath = ProfilePath
 
-  local Plugin = far2Utils.InitPlugin()
-  Plugin.ModuleDir = ProfilePath.."\\Macros\\modules\\"
-  unit.Plugin = Plugin
-  --Plugin.OriginalRequire = require
-  --Plugin.History = far2History.newsettings(nil, "alldata")
+  local ModuleDir = ProfilePath.."\\modules\\"
+  unit.ModuleDir = ModuleDir
+  unit.ExtendPackagePath(ModuleDir.."?.lua;")
 
   do -- Путь к LuaFAR пакетам
-    Path = Plugin.ModuleDir.."scripts\\?.lua;"
+    Path = ModuleDir.."scripts\\?.lua;"
     unit.ScriptsPath = Path
     unit.ExtendPackagePath(Path)
   end
@@ -453,13 +429,20 @@ function unit.Execute (Env) --> (table)
   end
   --]]
 
+  far2Utils   = require "far2.utils"
+  --far2History = require "far2.history"
+
+  local Plugin = far2Utils.InitPlugin()
+  unit.Plugin = Plugin
+  Plugin.ModuleDir = ModuleDir
+  --Plugin.OriginalRequire = require
+  --Plugin.History = far2History.newsettings(nil, "alldata")
+
   unit.PackagePath = package.path
   --far.Show(package.path:gsub(";", "\n"))
 
   unit:ReloadUserFile()
   unit:RegisterUserMenu()
-
-  --unit:InitContext()
 
   --local logShow = context.ShowInfo
   --logShow({ unit.PackagePath:gsub(";", "\n") }, "PackagePath", "w d2")
@@ -471,6 +454,27 @@ function unit.Execute (Env) --> (table)
 end ---- Execute
 
 end
+---------------------------------------- um_adapter
+do
+  local _H = getfenv()
+  local Unit = unit.Execute(_H)
+  --far.Show(um_adapter)
+
+  local mG = _G
+  local uG = Unit.global
+  for k, v in pairs(uG) do mG[k] = v end
+  --far.Show(mG.context)
+  local acall = mf.acall
+  local aItem = { from = "macro" }
+
+function mG.UMAdapterMenu ()
+  local sArea = Area.Current
+  --far.Show("Area", sArea)
+  --return um_adapter:Run(sArea)
+  return acall(Unit.Run, Unit, sArea, aItem)
+end ---- UMAdapterMenu
+
+end
 --------------------------------------------------------------------------------
-return { Execute = unit.Execute }
+--return { Execute = unit.Execute }
 --------------------------------------------------------------------------------
