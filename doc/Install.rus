@@ -7,20 +7,18 @@
 
 Установка:
 1. Закройте все окна FAR Manager (кроме одного окна для установки).
-2. Скопируйте содержимое архива в каталог ~%FarProfile%\modules~.
-3. Скопируйте файл "um_adapter.lua" из каталога ~%FarProfile%\modules~
+2. Скопируйте содержимое архива в каталог ~%FarProfile%\work~.
+3. Скопируйте файл "um_adapter.lua" из каталога ~%FarProfile%\work~
    в каталог ~%FarProfile%\Macros\scripts~.
 
 Установка пакета 'LuaFAR context':
-1. Скопируйте каталог ~context~ из архива 'LuaFAR context'
-   в каталог ~%FarProfile%\modules~.
-2. Для использования пакета в макросах скопируйте содержимое
-   каталога ~%FarProfile%\modules\context\samples\macros~
-   в каталог ~%FarProfile%\Macros\scripts~.
+1. Скопируйте каталог ~context~ из архива пакета в каталог ~%FarProfile%\work~.
+2. Для использования пакета в макросах скопируйте содержимое каталога
+   ~%FarProfile%\work\context\samples\macros~ в ~%FarProfile%\Macros\scripts~.
 
 Установка пакетов:
 2. Скопируйте каталоги пакетов из архивов этих пакетов
-   в каталог ~%FarProfile%\modules\scripts~.
+   в каталог ~%FarProfile%\work\scripts~.
 3. Переименуйте файл "_usermenu.lua.example" в "_usermenu.lua".
 4. Очистите кэш плагинов и перезагрузите FAR Manager.
 
@@ -28,9 +26,9 @@
   Если установлены плагин 'LuaFAR for Editor'
 и пакеты скриптов Rh_Scripts и lfa_config, то можно выполнить следующее:
   - Перенесите пакеты из ~scripts~ каталога плагина
-    в каталог ~%FarProfile%\modules\scripts~.
+    в каталог ~%FarProfile%\work\scripts~.
   - Скопируйте "_usermenu.lua" из каталога плагина
-    в каталог ~%FarProfile%\modules~.
+    в каталог ~%FarProfile%\work~.
 
 Использование:
   Пример использования плагина в макросе приведён в файле
