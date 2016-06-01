@@ -412,7 +412,7 @@ function unit.Execute (Env) --> (table)
   end
   unit.ProfilePath = ProfilePath
 
-  local ModuleDir = ProfilePath.."\\modules\\"
+  local ModuleDir = ProfilePath.."\\work\\"
   unit.ModuleDir = ModuleDir
   unit.ExtendPackagePath(ModuleDir.."?.lua;")
 
