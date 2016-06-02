@@ -32,7 +32,7 @@
 
 Использование:
   Пример использования плагина в макросе приведён в файле
-"%FarProfile%\modules\doc\macros\um_adapter.menu.lua" каталога пакета.
+"%FarProfile%\work\doc\macros\um_adapter.menu.lua" каталога пакета.
 
 ―――――――
 P.S. Рекомендуется также просмотреть историю изменений
