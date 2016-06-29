@@ -1,7 +1,8 @@
 -- utils.lua --
 
 local F = far.Flags
-local band, bor, bnot = bit64.band, bit64.bor, bit64.bnot
+local band, bor = bit64.band, bit64.bor
+--local bnot, bxor = bit64.bnot, bit64.bxor
 local PluginDir = far.PluginStartupInfo().ModuleDir
 
 local function OnError (msg)
@@ -95,9 +96,10 @@ local function LoadEmbeddedScript (name)
 end
 
 local function RunInternalScript (name, ...)
-  local f = LoadEmbeddedScript(name)
+  local f, errmsg
+  f = LoadEmbeddedScript(name)
   if f then return f(...) end
-  local f, errmsg = loadfile(PluginDir..name..".lua")
+  f, errmsg = loadfile(PluginDir..name..".lua")
   if f then return f(...) end
   error(errmsg)
 end
@@ -433,7 +435,7 @@ end
 local function ExecuteCommandLine (tActions, tCommands, sFrom, fConfig)
   local function wrapfunc()
     local env = setmetatable({}, {__index=_G})
-    for i,v in ipairs(tActions) do
+    for _, v in ipairs(tActions) do
       if v.command then
         local fileobject = tCommands[v.command]
         RunUserItem(fileobject, {From=sFrom}, unpack(v))

@@ -232,7 +232,8 @@ function unit:Configure (aArg)
   while true do
     local item, pos = far.Menu(properties, items)
     if not item then return end
-    local ok, result = self:RunMenuItem(item, aArg, false)
+    local ok = self:RunMenuItem(item, aArg, false)
+    --local ok, result = self:RunMenuItem(item, aArg, false)
     if not ok then return end
     --if result then _History:save() end
     if item.action == unit.ReloadUserFile then return "reloaded" end
@@ -260,7 +261,8 @@ end ---- ProcessViewerEvent
 
 do
   local VK = win.GetVirtualKeys()
-  local band, bor, bxor, bnot = bit64.band, bit64.bor, bit64.bxor, bit64.bnot
+  local band, bor  = bit64.band, bit64.bor
+  --local bnot, bxor = bit64.bnot, bit64.bxor
 
 --function unit.KeyComb (Rec)
 local function KeyComb (Rec)
@@ -373,7 +375,7 @@ function unit:RegisterCmdLine ()
     CmdLine {
       prefixes = k,
       action = function (prefix, text)
-        args = SplitCmdLine(text)
+        local args = SplitCmdLine(text)
         RunUserItem(v, FromPanels, unpack(args))
       end,
     } ---
@@ -393,9 +395,11 @@ end ---- RegisterUserMenu
 do
   local GetSysEnv = win.GetEnv
 
+--[[
 local function ExpandEnv (s)
   return (s or ""):gsub("%%(.-)%%", GetSysEnv)
 end
+--]]
 
 function unit.Execute (Env) --> (table)
 
@@ -417,7 +421,7 @@ function unit.Execute (Env) --> (table)
   unit.ExtendPackagePath(ModuleDir.."?.lua;")
 
   do -- Путь к LuaFAR пакетам
-    Path = ModuleDir.."scripts\\?.lua;"
+    local Path = ModuleDir.."scripts\\?.lua;"
     unit.ScriptsPath = Path
     unit.ExtendPackagePath(Path)
   end
