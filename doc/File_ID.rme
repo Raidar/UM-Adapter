@@ -18,12 +18,14 @@ Copy : 2016+
 Home : http://raidar.github.com/index.htm
 
 [Anons]
-  UM Adapter is a package of scripts for using script packages
-writed for 'LuaFAR for Editor' plugin within LuaMacro plugin.
-UM Adapter is based on source code of 'LuaFAR for Editor' by Shmuel Zeigerman.
+  A package of scripts for using script packages writed
+for 'LuaFAR for Editor' plugin within LuaMacro plugin.
+  The package is based on source code of 'LuaFAR for Editor'
+plugin by Shmuel Zeigerman and is used some scripts of the plugin.
 
-  UM Adapter — пакет для использования пакетов скриптов,
+  Пакет для использования пакетов скриптов,
 написанных для 'LuaFAR for Editor', в плагине LuaMacro.
-UM Adapter основан на исходном коде 'LuaFAR for Editor' Сэмуэла Зейгермана.
+  Пакет основан на исходном коде плагина 'LuaFAR for Editor'
+Сэмуэла Зейгермана и использует некоторые скрипты плагина.
 
 ―――――――
