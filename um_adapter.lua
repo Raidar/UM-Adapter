@@ -352,10 +352,11 @@ function unit:ProcessEditorInput (Rec)
     local item = self.HotKeyTable[KeyComb(Rec)]
     if item then
       if Rec.KeyDown then
-        if type(item)=="number" then item = EditorMenuItems[item] end
+        --if type(item)=="number" then item = EditorMenuItems[item] end
         --if item then self:RunMenuItem(item, {From="editor"}) end
 
-        if item then
+        --if item then
+        if type(item) == 'table' then
           self:RunMenuItem(item, {From="editor"}, item.action ~= unit.Configure)
 
         end
@@ -366,7 +367,7 @@ function unit:ProcessEditorInput (Rec)
     end
   end
 
-  for _,f in ipairs(self.Handlers.EditorInput) do
+  for _, f in ipairs(self.Handlers.EditorInput) do
     if f(Rec) then return true end
 
   end
@@ -397,8 +398,9 @@ end ---- RegisterMenuItem
 
 function unit:RegisterEvents (Priority)
 
+  Priority = Priority --or 1--0--0
+
   local Event = self.Env.Event
-  local Priority = Priority --or 1--0--0
 
   Event {
     group       = "EditorInput",
@@ -481,7 +483,7 @@ end ---- RegisterCmdLine
 function unit:RegisterUserMenu (Priority)
 
   self:RegisterMenuItem()
-  self:RegisterEvents()
+  self:RegisterEvents(Priority)
   self:RegisterCmdLine()
 
 end ---- RegisterUserMenu
