@@ -7,8 +7,8 @@
 --rhlog.TblMsg(_G, "_G", 0, "f")
 --rhlog.TblMsg(getfenv(), "getfenv", 1)
 
-local UseAutoAdding = true
---local UseAutoAdding = false
+--local UseAutoAdding = true
+local UseAutoAdding = false
 
 ----------------------------------------
 --[[ Extend package.path ]]--
@@ -46,7 +46,7 @@ MakeResident("context.resident") -- LFc resident
 -- [==[
 if UseAutoAdding then
   --[[ Auto loading ]]--
-  --AutoInstall("", "%_.+menu%.lua", 1) -- Загрузка всех _*menu.lua
+  --AutoInstall("", "%_.+menu%.lua$", 1) -- Загрузка всех _*menu.lua
   --logShow({}, "UseAutoAdding = true")
   --AutoInstall("scripts/", "%_.+menu%.lua$", 1) -- Загрузка всех _*menu.lua
   AutoInstall("scripts/", "%_usermenu%.lua$", 1) -- Загрузка всех _usermenu.lua

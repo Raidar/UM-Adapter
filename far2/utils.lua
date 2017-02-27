@@ -241,8 +241,8 @@ local function MakeAutoInstall (Plugin, AddUserFile)
         if try then
           local relName = item.FileName:sub(offset)
           local Name = relName:match("[^\\/]+$")
-          --if Name:match(filepattern) then AddUserFile(relName) end
-          -- [[
+          if Name:match(filepattern) then AddUserFile(relName) end
+          --[[
           if Name:match(filepattern) then
             AddUserFile(relName)
           else
