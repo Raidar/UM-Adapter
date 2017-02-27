@@ -1,8 +1,8 @@
 UM Adapter pack
 
 [Info]
-Ver. : 3.0.2.0
-Date : 2017-01-14
+Ver. : 3.0.2.1
+Date : 2017-02-27
 Ware : Freeware
 Lic. : MIT
 Reqs : FAR + LuaFAR v.3.0.4575
@@ -13,9 +13,12 @@ Auth : A.I. Rakhmatullin
        / А.И. Рахматуллин
 Addr : RF, RT, Kazan
        / РФ, РТ, Казань
-Copy : 2016/2016+
+Copy : 2016/2017+
 
 Home : http://raidar.github.com/index.htm
+Link : http://raidar.github.io/Programs/FarScripts.htm#UM_Adapter
+
+Repo : https://github.com/Raidar/LuaFAR-context
 
 [Anons]
   A package of scripts for using script packages writed
